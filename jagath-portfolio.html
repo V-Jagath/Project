@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagathratchagan V - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            dark: '#1e40af'
+                        },
+                        secondary: {
+                            light: '#1e40af',
+                            dark: '#3b82f6'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'slide-down': 'slideDown 0.6s ease-out forwards',
+                        'scale-in': 'scaleIn 0.5s ease-out forwards',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Theme transition for all elements */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Custom gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+        }
+
+        /* Theme toggle styling */
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1e40af;
+            border-radius: 34px;
+            transition: .4s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .4s;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: #3b82f6;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(30px);
+        }
+
+        /* Animation delays */
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        /* Skill bar animation */
+        .skill-bar {
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .hover-lift:hover {
+            box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-white min-h-screen">
+    <!-- Header with theme toggle -->
+    <header
+        class="sticky top-0 z-50 w-full bg-white/70 dark:bg-gray-900/80 transition-opacity backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="mx-auto px-4 py-3 flex justify-between items-center">
+
+            <!-- Left Side (Logo/Name) -->
+            <div class="">
+                <h1
+                    class=" text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-800 to-blue-900 dark:from-blue-200 dark:to-blue-700 bg-clip-text text-transparent animate-pulse-slow">
+                    Jagathratchagan V
+                </h1>
+            </div>
+
+            <!-- Desktop Nav Links + Theme Toggle -->
+            <div class="hidden md:flex items-center space-x-8">
+                <!-- Nav Links -->
+                <nav class="flex space-x-6 text-gray-700 dark:text-gray-300 font-bold">
+                    <a href="#home" class="hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#about" class="hover:text-blue-600 transition-colors">About</a>
+                    <a href="#skills" class="hover:text-blue-600 transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-blue-600 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center space-x-2 ">
+                    <i class="fas fa-sun text-yellow-500 hidden md:inline"></i>
+                    <label class="theme-toggle">
+                        <input type="checkbox" id="themeSwitch">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <i class="fas fa-moon text-indigo-500 hidden md:inline"></i>
+                </div>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuBtn"
+                class="md:hidden flex items-center text-gray-700 dark:text-gray-300 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div id="mobileMenu" class="hidden md:hidden dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <nav
+                class="flex flex-col space-y-3 px-6 py-4 text-gray-700 dark:text-gray-300 font-medium hover:text-blue-800 ">
+                <a href="#home" class="hover:text-blue-500 transition-colors">Home</a>
+                <a href="#about" class="hover:text-blue-500 transition-colors">About</a>
+                <a href="#skills" class="hover:text-blue-500 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-blue-500 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-blue-500 transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-16 px-4 text-white animate-slide-down">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10">
+            <img src="Portfolio.jpeg" alt="jagath-image" class="ml-72 rounded-full w-72" >
+            <div class="container mx-auto max-w-4xl text-center">
+                <div
+                    class="w-32 h-32 mx-auto mb-6 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/20 flex items-center justify-center animate-float">
+                    <span class="text-4xl">👨‍💻</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Innovative Developer & Designer</h2>
+                <p class="text-xl opacity-90 mb-6">Crafting digital experiences with code and creativity</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <a href="#contact"
+                        class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 hover-lift">
+                        Get In Touch
+                    </a>
+                    <a href="#projects"
+                        class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 hover-lift">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me / Executive Summary -->
+    <section id="about" class="py-12 px-4 animate-fade-in delay-200">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-blue-500 dark:text-blue-400">About Me</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover-lift">
+                <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 text-center">
+                    I’m Jagathratchagan V, a computer science post-graduate who enjoys shaping ideas into smart and
+                    simple digital solutions. My journey has taken me through web development, UI/UX design, and cloud
+                    technologies, where I’ve learned that great projects are built on both logic and creativity. I
+                    thrive on continuous learning, teamwork, and experimenting with new tools, always aiming to turn
+                    challenges into opportunities.</p>
+                <div class="flex flex-wrap justify-center gap-6 mt-8">
+                    <div class="flex items-center text-gray-700 dark:text-gray-300 animate-scale-in delay-300">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
+                            <i class="fas fa-phone text-blue-500 dark:text-blue-400"></i>
+                        </div>
+                        <a href="https://web.whatsapp.com">+91 9360270984</a>
+                    </div>
+                    <div class="flex items-center text-gray-700 dark:text-gray-300 animate-scale-in delay-400">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
+                            <i class="fas fa-envelope text-blue-500 dark:text-blue-400"></i>
+                        </div>
+                        <a
+                            href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSKhpkMwfSNJHZDFMwdvgxjSmRFbrzHKkZTmhKdfDqFmtRwfSlLSJzQBDrqqCWpgzJfvqLzp">jagath9360@gmail.com</a>
+                    </div>
+                    <div class="flex items-center text-gray-700 dark:text-gray-300 animate-scale-in delay-500">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
+                            <i class="fas fa-map-marker-alt text-blue-500 dark:text-blue-400"></i>
+                        </div>
+                        <span>Chennai</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-4 bg-gray-50 dark:bg-gray-800/50 animate-fade-in">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500 dark:text-blue-400">Skills</h2>
+
+            <!-- Technical Skills -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Technical Skills</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div
+                        class=" font-semibold dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-100">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 mx-auto rounded-full bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center mb-4">
+                                <i class="fab fa-html5 text-3xl text-orange-500"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2"> Web Development</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">HTML, CSS, Bootstrap, JavaScript</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-200">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 mx-auto rounded-full bg-pink-100 dark:bg-pink-900/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-palette text-3xl text-pink-500"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">UI/UX Design</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Figma, User Research</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-300">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 mx-auto rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-code text-3xl text-green-500"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Programming</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">C++, C, SQL, MERN Stack, Python</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-400">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-cloud text-3xl text-blue-500"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Cloud & Tools</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">AWS Basics, Git & GitHub, VS Code</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-500">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 mx-auto rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-database text-3xl text-purple-500"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Database</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">SQL, Data Management</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 mx-auto rounded-full bg-yellow-100 dark:bg-yellow-900/20 flex items-center justify-center mb-4">
+                                <i class="fas fa-paint-brush text-3xl text-yellow-500"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Design Tools</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Canva, Creative Design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Soft Skills</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div
+                        class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center hover-lift animate-scale-in delay-100">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-2">
+                            <i class="fas fa-users text-xl text-blue-500"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-800 dark:text-white">Interpersonal Skills</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center hover-lift animate-scale-in delay-200">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-2">
+                            <i class="fas fa-ear-listen text-xl text-blue-500"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-800 dark:text-white">Active Listening</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center hover-lift animate-scale-in delay-300">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-2">
+                            <i class="fas fa-bolt text-xl text-blue-500"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-800 dark:text-white">Quick Learner</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center hover-lift animate-scale-in delay-400">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-2">
+                            <i class="fas fa-chart-line text-xl text-blue-500"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-800 dark:text-white">Self-Improvement</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center hover-lift animate-scale-in delay-500">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-2">
+                            <i class="fas fa-keyboard text-xl text-blue-500"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-800 dark:text-white">Fast Typing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section id="projects" class="py-16 px-4 animate-fade-in">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500 dark:text-blue-400">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-100">
+                    <div class="mb-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud-upload-alt text-xl text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Heterogeneous Data Storage
+                            Management</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Implemented an efficient cloud storage model with deduplication to eliminate redundancy and
+                            optimize storage space in cloud computing environments.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 text-xs px-2 py-1 rounded">Cloud
+                                Computing</span>
+                            <span
+                                class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 text-xs px-2 py-1 rounded">Data
+                                Management</span>
+                            <span
+                                class="bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-100 text-xs px-2 py-1 rounded">Optimization</span>
+                        </div>
+                        <a href="https://github.com/V-Jagath/Project"
+                            class="inline-flex items-center text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Additional project cards would go here -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-200">
+                    <div class="mb-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-mobile-alt text-xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Responsive Web Application
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Developed a fully responsive web application with modern UI components and seamless user
+                            experience across all devices.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 text-xs px-2 py-1 rounded">React</span>
+                            <span
+                                class="bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-100 text-xs px-2 py-1 rounded">JavaScript</span>
+                            <span
+                                class="bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-100 text-xs px-2 py-1 rounded">Tailwind
+                                CSS</span>
+                        </div>
+                        <a href="https://github.com/V-Jagath/Project"
+                            class="inline-flex items-center text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-300">
+                    <div class="mb-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-database text-xl text-purple-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Database Optimization
+                            System</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Designed and implemented a database optimization system that improved query performance by
+                            40% through indexing and query optimization techniques.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 text-xs px-2 py-1 rounded">SQL</span>
+                            <span
+                                class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 text-xs px-2 py-1 rounded">Performance</span>
+                            <span
+                                class="bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-100 text-xs px-2 py-1 rounded">Optimization</span>
+                        </div>
+                        <a href="https://github.com/V-Jagath/Project"
+                            class="inline-flex items-center text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-16 px-4 bg-gray-50 dark:bg-gray-800/50 animate-fade-in">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500 dark:text-blue-400">Education</h2>
+            <div class="space-y-8">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-100">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">MSc Computer Science</h3>
+                            <p class="text-blue-500 dark:text-blue-400 font-medium">S S Government Arts College,
+                                Tiruttani</p>
+                            <p class="text-gray-600 dark:text-gray-300">University of Madras</p>
+                            <p class="text-gray-500 dark:text-gray-400 mt-1">Percentage: 75%</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 md:text-right">
+                            <span
+                                class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm font-medium">2023
+                                – 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-200">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">BSc Computer Science</h3>
+                            <p class="text-blue-500 dark:text-blue-400 font-medium">Muthurangam Government Arts College,
+                                Vellore</p>
+                            <p class="text-gray-600 dark:text-gray-300">Thiruvalluvar University</p>
+                            <p class="text-gray-500 dark:text-gray-400 mt-1">Percentage: 65%</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 md:text-right">
+                            <span
+                                class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm font-medium">2019
+                                – 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements / Certifications -->
+    <section id="achievements" class="py-16 px-4 animate-fade-in">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500 dark:text-blue-400">Certifications
+                & Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-100">
+                    <div class="flex items-start">
+                        <div
+                            class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center mr-4">
+                            <i class="fab fa-aws text-orange-500 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">AWS Cloud Technical
+                                Essentials</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Amazon Web Services (AWS)</p>
+                            <a href="https://drive.google.com/file/d/1x5eATOtCzMvBdw0kMI_fthRcymnIHW2M/view?usp=drive_link"
+                                class="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm transition-colors">View
+                                Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-200">
+                    <div class="flex items-start">
+                        <div
+                            class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-palette text-blue-500 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Introduction to UI/UX
+                                Design</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">IBM</p>
+                            <a href="https://drive.google.com/file/d/1qeDGGYR6qpjPMaVQVI1DQMEhSOrGNYM1/view?usp=drive_link"
+                                class="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm transition-colors">View
+                                Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-300">
+                    <div class="flex items-start">
+                        <div
+                            class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mr-4">
+                            <i class="fab fa-html5 text-blue-500 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">HTML & CSS in Depth
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Meta</p>
+                            <a href="https://drive.google.com/file/d/1Dq3-5wFAQT_6A1F4NgtpnJv7BJ2ugWUv/view?usp=drive_link"
+                                class="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm transition-colors">View
+                                Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover-lift animate-scale-in delay-400">
+                    <div class="flex items-start">
+                        <div
+                            class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-keyboard text-green-500 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Typewriting (Senior
+                                Grade)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Tamil and English</p>
+                            
+                            <span
+                                class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 px-2 py-1 rounded text-xs">Professional
+                                Skill</span>
+                                <a href="https://drive.google.com/file/d/1u7Tukeqdcy4Rq6woBCirdRO31lG7bxQK/view?usp=sharing"
+                                class="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm transition-colors">View
+                                Certificate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section id="languages" class="py-16 px-4 bg-gray-50 dark:bg-gray-800/50 animate-fade-in">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500 dark:text-blue-400">Languages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center hover-lift animate-scale-in delay-100">
+                    <div
+                        class="w-16 h-16 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-globe text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">English</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Professional Proficiency</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center hover-lift animate-scale-in delay-200">
+                    <div
+                        class="w-16 h-16 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-language text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Tamil</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Native Language</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 animate-fade-in">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500 dark:text-blue-400">Get In Touch
+            </h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover-lift">
+                <p class="text-center text-gray-600 dark:text-gray-300 mb-8 text-lg">
+                    I'm always interested in new opportunities and collaborations. Feel free to reach out!
+                </p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSKhpkMwfSNJHZDFMwdvgxjSmRFbrzHKkZTmhKdfDqFmtRwfSlLSJzQBDrqqCWpgzJfvqLzp"
+                        class="flex items-center bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 px-6 py-3 rounded-lg transition-colors duration-300 hover-lift text-white">
+                        <i class="fas fa-envelope mr-3 text-xl"></i>
+                        <span class="font-medium">Email</span>
+                    </a>
+                    <a href="tel:+919360270984"
+                        class="flex items-center bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 px-6 py-3 rounded-lg transition-colors duration-300 hover-lift text-white">
+                        <i class="fas fa-phone mr-3 text-xl"></i>
+                        <span class="font-medium">Call</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jagathdevloper/"
+                        class="flex items-center bg-blue-700 hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-900 px-6 py-3 rounded-lg transition-colors duration-300 hover-lift text-white">
+                        <i class="fab fa-linkedin mr-3 text-xl"></i>
+                        <span class="font-medium">LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/V-Jagath/Project"
+                        class="flex items-center bg-gray-700 hover:bg-gray-800 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-3 rounded-lg transition-colors duration-300 hover-lift text-white">
+                        <i class="fab fa-github mr-3 text-xl"></i>
+                        <span class="font-medium">GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <p class="text-gray-300 dark:text-gray-400">&copy; 2025 Jagathratchagan V. All rights reserved.</p>
+            <p class="text-gray-200 dark:text-gray-500 text-sm mt-2">Built with HTML5 & Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Script (No JS requirement, using checkbox with CSS) -->
+    <script>
+        // Simple theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeSwitch = document.getElementById('themeSwitch');
+            const htmlElement = document.documentElement;
+
+            // Check for saved theme preference or respect OS preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.classList.toggle('dark', savedTheme === 'dark');
+                themeSwitch.checked = savedTheme === 'light';
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                themeSwitch.checked = !prefersDark;
+            }
+
+            // Listen for toggle changes
+            themeSwitch.addEventListener('change', function () {
+                if (themeSwitch.checked) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
